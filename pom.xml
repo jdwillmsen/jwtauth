@@ -11,10 +11,11 @@
 	<groupId>com.jdw</groupId>
 	<artifactId>jwtauth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jwtauth</name>
+	<name>jwt-auth</name>
 	<description>A jwt based authentication and authorization backend</description>
 	<properties>
 		<java.version>21</java.version>
+		<jsonwebtoken.version>0.11.5</jsonwebtoken.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,6 +85,21 @@
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jsonwebtoken.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jsonwebtoken.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jsonwebtoken.version}</version>
 		</dependency>
 	</dependencies>
 

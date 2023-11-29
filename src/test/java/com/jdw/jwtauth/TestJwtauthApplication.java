@@ -17,7 +17,7 @@ public class TestJwtauthApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(JwtauthApplication::main).with(TestJwtauthApplication.class).run(args);
+		SpringApplication.from(JwtAuthApplication::main).with(TestJwtauthApplication.class).run(args);
 	}
 
 }
