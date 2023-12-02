@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,11 @@ public class RolesDaoPostgres implements RolesDao {
             FROM jdw.jwtauth.roles
             WHERE role_id = ?;
             """;
+    protected static final String SELECT_ROLES_NAMES_SQL = """
+            SELECT *
+            FROM jdw.jwtauth.roles
+            WHERE role_id in (%s);
+            """;
     protected static final String INSERT_ROLE_SQL = """
             INSERT INTO jdw.jwtauth.roles (role_name, role_description, active,
                                           created_by_user_id, created_time, modified_by_user_id, modified_time)
@@ -33,7 +39,7 @@ public class RolesDaoPostgres implements RolesDao {
             RETURNING role_id;
             """;
     protected static final String UPDATE_ROLE_SQL = """
-            UPDATE jdw.jwtauth.role
+            UPDATE jdw.jwtauth.roles
             SET role_name = ?,
                 role_description = ?,
                 active = ?,
@@ -66,6 +72,14 @@ public class RolesDaoPostgres implements RolesDao {
                 .query(SELECT_ROLE_SQL, RolesDaoPostgres::mapRow, roleId)
                 .stream()
                 .findFirst();
+    }
+
+    @Override
+    public List<String> getNames(List<Long> roleIdList) {
+        log.info("Getting role names with: roleIdList={}", roleIdList);
+        if (roleIdList == null || roleIdList.isEmpty()) return List.of();
+        String ids = String.join(", ", Collections.nCopies(roleIdList.size(), "?"));
+        return jdbcTemplate.query(String.format(SELECT_ROLES_NAMES_SQL, ids), (rs, nowNum) -> rs.getString("role_name"), roleIdList.toArray());
     }
 
     @Override

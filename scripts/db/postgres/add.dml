@@ -1,0 +1,8 @@
+insert into jdw.jwtauth.users (first_name, last_name, email_address, password, created_by_user_id, created_time, modified_by_user_id, modified_time)
+values ('jwtauth', 'system', 'jwtauth.system@jdw.com', '$2a$10$x65/IK3i4Bdt6Mpw6WvVrO1xbYhpJyhBNezk7SXsNJ5Ujpe3qj/Pi', 1, now(), 1, now());
+
+insert into jdw.jwtauth.roles (role_name, role_description, active, created_by_user_id, created_time, modified_by_user_id, modified_time)
+values ('ADMIN', 'An administrator role', true, 1, now(), 1, now());
+
+insert into jdw.jwtauth.users_roles (user_id, role_id, created_by_user_id, created_time)
+values (1, 1, 1, now())

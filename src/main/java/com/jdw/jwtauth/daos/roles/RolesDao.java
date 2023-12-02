@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface RolesDao {
     List<RoleDetails> getAll();
     Optional<RoleDetails> get(Long roleId);
+    List<String> getNames(List<Long> roleIdList);
     Optional<Long> save(RoleDetails roleDetails, Long changeImplementerId);
     void update(RoleDetails roleDetails, Long changeImplementerId);
 }

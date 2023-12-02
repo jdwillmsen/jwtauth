@@ -45,6 +45,12 @@ public class RolesRepositoryImpl implements RolesRepository {
     }
 
     @Override
+    public List<String> getNames(List<Long> roleIdList) {
+        log.debug("Getting role names with: roleIdList={}", roleIdList);
+        return rolesDao.getNames(roleIdList);
+    }
+
+    @Override
     public Optional<Long> add(Role role, Long changeImplementerId) {
         log.debug("Adding role with: roleName={}", role.getRoleDetails().roleName());
         return rolesDao.save(role.getRoleDetails(), changeImplementerId);

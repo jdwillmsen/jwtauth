@@ -11,7 +11,7 @@ public interface UsersRepository {
     Optional<User> get(String emailAddress);
     Optional<Long> add(User user, Long changeImplementerId);
     void update(User user, Long changeImplementerId);
-    void remove(Long userId, Long changeImplementerId);
+    void delete(Long userId, Long changeImplementerId);
     void grantRoles(Long userId, List<Long> roles, Long changeImplementerId);
     void revokeRoles(Long userId, List<Long> roles, Long changeImplementerId);
 }

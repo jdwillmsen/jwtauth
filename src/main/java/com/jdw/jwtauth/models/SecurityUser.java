@@ -1,5 +1,6 @@
 package com.jdw.jwtauth.models;
 
+import com.jdw.jwtauth.repositories.roles.RolesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,9 +11,10 @@ import java.util.Collection;
 @AllArgsConstructor
 public class SecurityUser implements UserDetails {
     private final User user;
+    private final RolesRepository rolesRepository;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles().stream().map(roleId -> new SimpleGrantedAuthority(roleId.toString())).toList();
+        return rolesRepository.getNames(user.getRoles()).stream().map(SimpleGrantedAuthority::new).toList();
     }
 
     @Override
@@ -43,5 +45,9 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getUserId() {
+        return user.getUserId();
     }
 }

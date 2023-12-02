@@ -68,8 +68,8 @@ public class UsersRepositoryImpl implements UsersRepository {
     }
 
     @Override
-    public void remove(Long userId, Long changeImplementerId) {
-        log.debug("Removing user with: userId={}, changeImplementerId={}", userId, changeImplementerId);
+    public void delete(Long userId, Long changeImplementerId) {
+        log.debug("Deleting user with: userId={}, changeImplementerId={}", userId, changeImplementerId);
         usersRolesDao.delete(userId, null, changeImplementerId);
         usersDao.delete(userId, changeImplementerId);
     }

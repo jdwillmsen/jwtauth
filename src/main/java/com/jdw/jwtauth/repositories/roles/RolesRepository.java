@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface RolesRepository {
     List<Role> getAll();
     Optional<Role> get(Long roleId);
+    List<String> getNames(List<Long> roleIdList);
     Optional<Long> add(Role role, Long changeImplementerId);
     void update(Role role, Long changeImplementerId);
     void addUsers(Long roleId, List<Long> users, Long changeImplementerId);

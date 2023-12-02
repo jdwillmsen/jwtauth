@@ -19,26 +19,26 @@ import java.util.Optional;
 public class UsersDaoPostgres implements UsersDao {
     protected static final String SELECT_ALL_USERS_SQL = """
             SELECT *
-            FROM jdw.jwtauth.user;
+            FROM jdw.jwtauth.users;
             """;
     protected static final String SELECT_USER_SQL = """
             SELECT *
-            FROM jdw.jwtauth.user
+            FROM jdw.jwtauth.users
             WHERE user_id = ?;
             """;
     protected static final String SELECT_USER_BY_EMAIL_SQL = """
             SELECT *
-            FROM jdw.jwtauth.user
+            FROM jdw.jwtauth.users
             WHERE email_address = ?;
             """;
     protected static final String INSERT_USER_SQL = """
-            INSERT INTO jdw.jwtauth.user (first_name, last_name, email_address, password,
+            INSERT INTO jdw.jwtauth.users (first_name, last_name, email_address, password,
                                         created_by_user_id, created_time, modified_by_user_id, modified_time)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             RETURNING user_id;
             """;
     protected static final String UPDATE_USER_SQL = """
-            UPDATE jdw.jwtauth.user
+            UPDATE jdw.jwtauth.users
             SET first_name = ?,
                 last_name = ?,
                 email_address = ?,
@@ -48,7 +48,7 @@ public class UsersDaoPostgres implements UsersDao {
             WHERE user_id = ?;
             """;
     protected static final String DELETE_USER_SQL = """
-            DELETE FROM jdw.jwtauth.user
+            DELETE FROM jdw.jwtauth.users
             WHERE user_id = ?;
             """;
     private final JdbcTemplate jdbcTemplate;

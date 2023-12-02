@@ -6,3 +6,20 @@ management:
       base-path: "/system"
       exposure:
         include: "*"
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jdw
+    username: jdw_non_rw
+    password: default_password
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: JDWPGPool
+      connection-test-query: "select 1;"
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 300000
+      minimum-idle: 5
+      maximum-pool-size: 50
+      auto-commit: true
+      leak-detection-threshold: 5000
