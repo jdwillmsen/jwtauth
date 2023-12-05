@@ -1,0 +1,15 @@
+name: Maven Release
+
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Java Maven release
+        uses: qcastel/github-actions-maven-release@v1.12.41
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-21-openjdk/
+        with:
+          release-branch-name: "main"
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
