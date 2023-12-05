@@ -1,6 +1,7 @@
 package com.jdw.jwtauth.configs;
 
 import com.jdw.jwtauth.services.JwtUserDetailService;
+import com.jdw.jwtauth.services.TokensService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,6 +33,7 @@ import java.util.List;
 @Slf4j
 public class SecurityConfig {
     private final JwtUserDetailService jwtUserDetailService;
+    private final TokensService tokensService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
@@ -60,7 +63,10 @@ public class SecurityConfig {
                 .userDetailsService(jwtUserDetailService)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.logoutUrl("/auth/logout").addLogoutHandler(logoutService)).logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext()))) //TODO: Implement this
+                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+                        .logoutUrl("/auth/logout")
+                        .addLogoutHandler(tokensService)
+                .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext())))
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
                         .accessDeniedHandler(customAccessDeniedHandler)
                         .authenticationEntryPoint(customAuthenticationEntryPoint))

@@ -2,6 +2,8 @@ package com.jdw.jwtauth.configs;
 
 import com.jdw.jwtauth.services.JwtService;
 import com.jdw.jwtauth.services.JwtUserDetailService;
+import com.jdw.jwtauth.services.TokensService;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import java.io.IOException;
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUserDetailService jwtUserDetailService;
+    private final TokensService tokensService;
 
     @Override
     protected void doFilterInternal(
@@ -36,24 +39,30 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        final String emailAddress = JwtService.getEmailAddress(authorizationHeader);
-        if (emailAddress != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = jwtUserDetailService.loadUserByUsername(emailAddress);
-            if (JwtService.isTokenValid(JwtService.getJwtToken(authorizationHeader), userDetails)) {
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        try {
+            final String emailAddress = JwtService.getEmailAddress(authorizationHeader);
+            if (emailAddress != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = jwtUserDetailService.loadUserByUsername(emailAddress);
+                String jwtToken = JwtService.getJwtToken(authorizationHeader);
+                if (JwtService.isTokenValid(jwtToken, userDetails) && tokensService.isTokenActive(jwtToken)) {
+                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
+                    authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                }
             }
+        } catch (ExpiredJwtException expiredJwtException) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
         filterChain.doFilter(request, response);
     }
 
     @Override
     protected boolean shouldNotFilterErrorDispatch() {
+        log.trace("Should not filter error dispatch called");
         return false;
     }
 }

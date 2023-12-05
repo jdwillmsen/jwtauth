@@ -35,7 +35,7 @@ public class RolesDaoPostgres implements RolesDao {
     protected static final String INSERT_ROLE_SQL = """
             INSERT INTO jdw.jwtauth.roles (role_name, role_description, active,
                                           created_by_user_id, created_time, modified_by_user_id, modified_time)
-            VALUES(?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             RETURNING role_id;
             """;
     protected static final String UPDATE_ROLE_SQL = """
@@ -51,12 +51,12 @@ public class RolesDaoPostgres implements RolesDao {
 
     protected static RoleDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
         log.debug("Mapping row: rs={}, rowNum={}", rs, rowNum);
-        return new RoleDetails(
-                rs.getLong("role_id"),
-                rs.getString("role_name"),
-                rs.getString("role_description"),
-                rs.getBoolean("active")
-        );
+        return RoleDetails.builder()
+                .roleId(rs.getLong("role_id"))
+                .roleName(rs.getString("role_name"))
+                .roleDescription(rs.getString("role_description"))
+                .active(rs.getBoolean("active"))
+                .build();
     }
 
     @Override

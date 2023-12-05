@@ -97,6 +97,13 @@
 		</dependency>
 	</dependencies>
 
+	<scm>
+		<connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
+		<developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
+		<url>https://github.com/jdwillmsen/jwtauth</url>
+		<tag>v@{project.version}</tag>
+	</scm>
+
 	<build>
 		<plugins>
 			<plugin>

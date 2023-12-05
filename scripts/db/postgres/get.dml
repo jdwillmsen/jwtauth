@@ -1,0 +1,4 @@
+select * from jdw.jwtauth.users;
+select * from jdw.jwtauth.roles;
+select * from jdw.jwtauth.users_roles;
+select * from jdw.jwtauth.tokens;

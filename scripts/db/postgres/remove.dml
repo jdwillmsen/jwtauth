@@ -1,0 +1,4 @@
+delete from jdw.jwtauth.tokens;
+delete from jdw.jwtauth.users_roles;
+delete from jdw.jwtauth.roles;
+delete from jdw.jwtauth.users;

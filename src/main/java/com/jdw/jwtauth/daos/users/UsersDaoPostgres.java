@@ -55,13 +55,13 @@ public class UsersDaoPostgres implements UsersDao {
 
     protected static UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
         log.debug("Mapping row: rs={}, rowNum={}", rs, rowNum);
-        return new UserDetails(
-                rs.getLong("user_id"),
-                rs.getString("first_name"),
-                rs.getString("last_name"),
-                rs.getString("email_address"),
-                rs.getString("password")
-        );
+        return UserDetails.builder()
+                .userId(rs.getLong("user_id"))
+                .firstName(rs.getString("first_name"))
+                .lastName(rs.getString("last_name"))
+                .emailAddress(rs.getString("email_address"))
+                .password(rs.getString("password"))
+                .build();
     }
 
     @Override
