@@ -30,7 +30,7 @@ jobs:
         echo $GITHUB_WORKSPACE
         cat $GITHUB_WORKSPACE/settings.xml
 
-    - name: Confugre git user
+    - name: Configure git user
       run: |
         git config user.email "actions@github.com"
         git config user.name "GitHub Actions"
