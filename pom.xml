@@ -97,6 +97,14 @@
 		</dependency>
 	</dependencies>
 
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/jdwillmsen/jwtauth</url>
+		</repository>
+	</distributionManagement>
+
 	<scm>
 		<connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
 		<developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
