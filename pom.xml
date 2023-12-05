@@ -138,4 +138,14 @@
 		</plugins>
 	</build>
 
+	<developers>
+		<developer>
+			<name>Jake Willmsen</name>
+			<email>jdwillmsen@gmail.com</email>
+			<roles>
+				<role>Lead Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
 </project>
