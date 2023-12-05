@@ -26,6 +26,11 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
+      - name: Configure git
+        run: |
+          git config user.name jdw-release-bot
+          git config user.email jdw-release-bot@github.com
+
       - name: Publish to GitHub Packages Apache Maven
         run: mvn release:clean release:prepare release:perform -s $GITHUB_WORKSPACE/settings.xml
         env:
