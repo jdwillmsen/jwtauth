@@ -2,6 +2,9 @@ name: Maven Release
 
 on: push
 
+permissions:
+  packages: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
