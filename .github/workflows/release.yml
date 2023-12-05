@@ -17,6 +17,10 @@ jobs:
           distribution: 'zulu'
           server-id: github
           settings-path: ${{ github.workspace }}
+      - name: Configure git author
+        run: |
+          git config --global user.email "jdwillmsen@gmail.com"
+          git config --global user.name "Jake Willmsen"
       - name: Publish package
         run: mvn -B release:clean release:prepare release:perform -s $GITHUB_WORKSPACE/settings.xml
         env:
