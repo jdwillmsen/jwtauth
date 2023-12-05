@@ -105,12 +105,12 @@
 		</repository>
 	</distributionManagement>
 
-	<scm>
-		<connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
-		<developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
-		<url>https://github.com/jdwillmsen/jwtauth</url>
-		<tag>v@{project.version}</tag>
-	</scm>
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:jdwillmsen/jwtauth.git</url>
+        <tag>v@{project.version}</tag>
+    </scm>
 
 	<build>
 		<plugins>
@@ -132,6 +132,7 @@
 				<version>${maven-release-plugin.version}</version>
 				<configuration>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
+                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
 				</configuration>
 			</plugin>
 		</plugins>
