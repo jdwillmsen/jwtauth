@@ -1,5 +1,5 @@
 # JWT Auth
-[![Java CI with Maven](https://github.com/jdwillmsen/jwtauth/actions/workflows/ci.yml/badge.svg)](https://github.com/jdwillmsen/jwtauth/actions/workflows/ci.yml) \
+[![Maven CI](https://github.com/jdwillmsen/jwtauth/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jdwillmsen/jwtauth/actions/workflows/ci.yml) \
 A JSON web token (JWT) based authentication and authorization backend. This backend service provides a locked down api 
 for managing and controlling users and roles. It is locked down by use of Spring Security to ensure that all requests
 have proper authentication and authorization. This service also makes use of spring actuator to provide some baseline 
