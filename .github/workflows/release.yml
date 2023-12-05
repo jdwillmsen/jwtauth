@@ -36,6 +36,6 @@ jobs:
         git config user.name "GitHub Actions"
 
     - name: Publish to GitHub Packages Apache Maven
-      run: ./mvnw -B -s $GITHUB_WORKSPACE/settings.xml release:clean release:prepare release:perform
+      run: mvn -B -s $GITHUB_WORKSPACE/settings.xml release:clean release:prepare release:perform
       env:
         GITHUB_TOKEN: ${{ github.token }}
