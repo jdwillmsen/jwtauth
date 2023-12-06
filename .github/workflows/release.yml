@@ -1,7 +1,6 @@
 name: Maven Release
 
-on:
-  push:
+on: workflow_call
 
 jobs:
   build:
