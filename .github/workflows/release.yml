@@ -19,5 +19,10 @@ jobs:
         java-version: '21'
         distribution: 'zulu'
 
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
     - name: Publish to GitHub Packages Apache Maven
       run: mvn -B -s settings-github.xml release:clean release:prepare release:perform
