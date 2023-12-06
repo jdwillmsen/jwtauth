@@ -147,6 +147,8 @@
 				<configuration>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
                     <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+					<localCheckout>true</localCheckout>
+					<pushChanges>false</pushChanges>
 				</configuration>
 			</plugin>
 		</plugins>
