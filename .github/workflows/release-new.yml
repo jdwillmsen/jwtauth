@@ -12,7 +12,7 @@ jobs:
       with:
         token: ${{ secrets.CICD_TOKEN }}
     - name: Release
-      uses: qcastel/github-actions-maven-release@2.6
+      uses: qcastel/github-actions-maven-release@1.5
       with:
         release-branch-name: "main"
         git-release-bot-name: "GitHub Actions"
