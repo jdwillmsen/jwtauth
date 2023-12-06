@@ -112,7 +112,7 @@
 	</distributionManagement>
 
     <scm>
-		<url>https://github.com/jdwillmsen/jwtauth.git</url>
+		<url>https://github.com/jdwillmsen/jwtauth</url>
         <connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
         <developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
         <tag>v@{project.version}</tag>
