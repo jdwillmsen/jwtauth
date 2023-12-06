@@ -25,4 +25,4 @@ jobs:
         git config user.email "actions@github.com"
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn -B -s settings-github.xml release:clean release:prepare release:perform
+      run: mvn -X -B -s settings-github.xml release:clean release:prepare release:perform
