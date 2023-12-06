@@ -34,6 +34,12 @@ mvn clean package &&
 java -jar target/jwtauth-0.0.1-SNAPSHOT.jar
 ```
 
+## Releases
+To release the app from your local repository you can run the following:
+```bash
+./mvnw -s settings-github.xml -B release:clean release:prepare release:perform
+```
+
 ## Project Info
 Started November 27th 2023
 
