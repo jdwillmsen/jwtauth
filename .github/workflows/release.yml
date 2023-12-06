@@ -19,13 +19,5 @@ jobs:
         java-version: '21'
         distribution: 'zulu'
 
-    - name: Configure git user
-      run: |
-        git config user.email "actions@github.com"
-        git config user.name "GitHub Actions"
-
-    - name: Verify files and pathing
-      run: pwd && ls
-
     - name: Publish to GitHub Packages Apache Maven
       run: mvn -B -s settings-github.xml release:clean release:prepare release:perform
