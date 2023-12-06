@@ -12,12 +12,12 @@ jobs:
       with:
         token: ${{ secrets.CICD_TOKEN }}
     - name: Release
-      uses: qcastel/github-actions-maven-release@master
+      uses: qcastel/github-actions-maven-release@2.6
       with:
         release-branch-name: "main"
         git-release-bot-name: "GitHub Actions"
         git-release-bot-email: "actions@github.com"
         access-token: ${{ secrets.CICD_TOKEN }}
         maven-repo-server-id: github
-        maven-repo-server-username: ${{ vars.CICD_USERNAME }}
+        maven-repo-server-username: jdwillmsen
         maven-repo-server-password: ${{ secrets.CICD_PASSWORD }}
