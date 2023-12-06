@@ -35,6 +35,9 @@ java -jar target/jwtauth-0.0.1-SNAPSHOT.jar
 ```
 
 ## Releases
+This project makes use of maven's release plugin to automatically tag and publish a proper package to GitHub's packages.
+
+### Local
 To release the app from your local repository you can run the following:
 ```bash
 ./mvnw -s settings-github.xml -B release:clean release:prepare release:perform
