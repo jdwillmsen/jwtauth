@@ -4,7 +4,7 @@
   <servers>
     <server>
       <id>github</id>
-      <username>${{ secrets.CICD_USERNAME }}</username>
+      <username>${{ vars.CICD_USERNAME }}</username>
       <password>${{ secrets.CICD_PASSWORD }}</password>
     </server>
   </servers>
