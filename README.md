@@ -45,7 +45,7 @@ setx CICD_PASSWORD=<password>
 ```
 Then the following can be run to perform the release:
 ```bash
-./mvnw -s settings-github.xml -B release:clean release:prepare release:perform
+./mvnw -s settings-local.xml -B release:clean release:prepare release:perform
 ```
 
 ## Project Info
