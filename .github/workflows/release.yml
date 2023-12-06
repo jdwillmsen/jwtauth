@@ -28,3 +28,5 @@ jobs:
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn -X -B -s settings-github.xml release:clean release:prepare release:perform
+      env:
+        GITHUB_TOKEN: ${{ secrets.CICD_TOKEN }}
