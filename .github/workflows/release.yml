@@ -17,6 +17,8 @@ jobs:
       with:
         java-version: '21'
         distribution: 'zulu'
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
 
     - name: Configure Git
       run: |
@@ -24,6 +26,8 @@ jobs:
         git config user.email "actions@github.com"
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn -X -B -s settings-github.xml release:clean release:prepare release:perform
+      run: mvn -X -B release:clean release:prepare release:perform
       env:
         GITHUB_TOKEN: ${{ secrets.CICD_TOKEN }}
+        MAVEN_USERNAME: ${{ vars.CICD_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.CICD_PASSWORD }}
