@@ -21,19 +21,13 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    - name: View settings.xml
-      run: |
-        pwd
-        echo $GITHUB_WORKSPACE
-        cat $GITHUB_WORKSPACE/settings.xml
-
     - name: Configure git user
       run: |
         git config user.email "actions@github.com"
         git config user.name "GitHub Actions"
+
+    - name: Verify files and pathing
+      run: pwd && ls
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn -B -s $GITHUB_WORKSPACE/settings.xml release:clean release:prepare release:perform
