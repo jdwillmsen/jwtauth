@@ -97,11 +97,6 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>${jsonwebtoken.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-provider-gitexe</artifactId>
-			<version>2.0.1</version>
-		</dependency>
 	</dependencies>
 
 	<distributionManagement>
@@ -113,7 +108,7 @@
 	</distributionManagement>
 
     <scm>
-		<url>https://github.com/jdwillmsen/jwtauth</url>
+		<url>git@github.com:jdwillmsen/jwtauth.git</url>
         <connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
         <developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
         <tag>v@{project.version}</tag>
