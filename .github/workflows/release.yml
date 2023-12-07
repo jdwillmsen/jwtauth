@@ -28,3 +28,4 @@ jobs:
         maven-repo-server-id: github
         maven-repo-server-username: jdwillmsen
         maven-repo-server-password: ${{ secrets.CICD_PASSWORD }}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
