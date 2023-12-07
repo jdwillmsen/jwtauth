@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.jdw</groupId>
 	<artifactId>jwtauth</artifactId>
-	<version>0.0.10-SNAPSHOT</version>
+	<version>0.0.10</version>
 	<name>jwt-auth</name>
 	<description>A jwt based authentication and authorization backend</description>
 	<properties>
@@ -111,7 +111,7 @@
 		<url>git@github.com:jdwillmsen/jwtauth.git</url>
         <connection>scm:git:git@github.com:jdwillmsen/jwtauth.git</connection>
         <developerConnection>scm:git:git@github.com:jdwillmsen/jwtauth.git</developerConnection>
-        <tag>v@{project.version}</tag>
+        <tag>v0.0.10</tag>
     </scm>
 
 	<build>
