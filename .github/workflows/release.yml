@@ -32,3 +32,6 @@ jobs:
         maven-repo-server-username: jdwillmsen
         maven-repo-server-password: ${{ secrets.CICD_PASSWORD }}
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        docker-registry-id: registry.hub.docker.com
+        docker-registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        docker-registry-password: ${{ secrets.DOCKER_HUB_PASSWORD }}
