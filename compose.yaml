@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: "jdwillmsen/jwtauth-postgres:latest"
+    ports:
+      - "5432:5432"
+  jwtauth:
+    depends_on:
+      - postgres
+    image: "jdwillmsen/jwtauth:latest"
+    ports:
+      - "9000:9000"
+    environment:
+      JWTA_PG_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/jdw"
+

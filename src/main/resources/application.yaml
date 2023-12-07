@@ -8,7 +8,7 @@ management:
         include: "*"
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/jdw
+    url: ${JWTA_PG_DATASOURCE_URL:jdbc:postgresql://localhost:5432/jdw}
     username: jdw_non_rw
     password: default_password
     driver-class-name: org.postgresql.Driver

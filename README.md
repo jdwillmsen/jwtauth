@@ -34,6 +34,13 @@ mvn clean package &&
 java -jar target/jwtauth-0.0.1-SNAPSHOT.jar
 ```
 
+### Docker Compose
+The application can also be run with docker compose without any configuration.
+```bash
+# Ran from the root folder
+docker compose up -d
+```
+
 ## Releases
 This project makes use of maven's release plugin to automatically tag and publish a proper package to GitHub's packages.
 
@@ -47,6 +54,17 @@ Then the following can be run to perform the release.
 ```bash
 ./mvnw -s settings-local.xml -B release:clean release:prepare release:perform
 ```
+
+### JIB
+In order to containerize the application the jib-maven-plugin is used.
+```bash
+mvn compile jib:build
+```
+or
+```bash
+mvn compile jib:dockerBuild
+```
+This will publish a compliant docker image of the application up to dockerhub.
 
 ## Project Info
 Started November 27th 2023

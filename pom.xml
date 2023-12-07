@@ -17,6 +17,7 @@
 		<jsonwebtoken.version>0.11.5</jsonwebtoken.version>
 		<maven-release-plugin.version>3.0.1</maven-release-plugin.version>
 		<maven-scm-plugin.version>2.0.1</maven-scm-plugin.version>
+		<jib-maven-plugin.version>3.4.0</jib-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -147,6 +148,36 @@
 				<configuration>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
                     <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<from>
+						<image>azul/zulu-openjdk:21</image>
+						<auth>
+							<username>${env.DOCKER_USER}</username>
+							<password>${env.DOCKER_PASSWORD}</password>
+						</auth>
+					</from>
+					<to>
+						<image>docker.io/jdwillmsen/jwtauth</image>
+						<auth>
+							<username>${env.DOCKER_USER}</username>
+							<password>${env.DOCKER_PASSWORD}</password>
+						</auth>
+						<tags>
+							<tag>latest</tag>
+							<tag>${project.version}</tag>
+						</tags>
+					</to>
+					<container>
+						<ports>
+							<port>9000</port>
+						</ports>
+					</container>
 				</configuration>
 			</plugin>
 		</plugins>
