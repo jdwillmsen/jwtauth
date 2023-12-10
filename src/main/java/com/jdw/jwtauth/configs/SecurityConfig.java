@@ -66,7 +66,7 @@ public class SecurityConfig {
                 .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
                         .logoutUrl("/auth/logout")
                         .addLogoutHandler(tokensService)
-                .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext())))
+                        .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext())))
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
                         .accessDeniedHandler(customAccessDeniedHandler)
                         .authenticationEntryPoint(customAuthenticationEntryPoint))
@@ -76,7 +76,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         log.debug("Retrieving CORS configuration source");
-        CorsConfiguration corsConfiguration  = new CorsConfiguration();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOriginPatterns(List.of("http://*:[*]"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type"));

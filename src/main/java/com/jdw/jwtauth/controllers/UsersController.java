@@ -41,7 +41,7 @@ public class UsersController {
 
     @PreAuthorize("hasAuthority('ADMIN') or #userId == authentication.principal.getUserId()")
     @DeleteMapping("/{userId}")
-    public void deleteUpdate(@PathVariable Long userId, @RequestHeader(name = "Authorization") String authorizationHeader) {
+    public void deleteUser(@PathVariable Long userId, @RequestHeader(name = "Authorization") String authorizationHeader) {
         log.debug("Deleting user with: userId={}", userId);
         usersService.deleteUser(userId, usersService.getUserId(JwtService.getEmailAddress(authorizationHeader)));
     }

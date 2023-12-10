@@ -174,14 +174,6 @@
 						</ports>
 					</container>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>release:perform</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

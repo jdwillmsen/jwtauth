@@ -41,6 +41,24 @@ The application can also be run with docker compose without any configuration.
 docker compose up -d
 ```
 
+## Workflows
+There are currently 3 workflows that will get run.
+
+### CI
+This workflow is called CI for continuous integration. \
+This workflow will run all the tests as well as make sure that the application can package properly. \
+This workflow is triggered on any push to origin repository.
+
+### Snapshot
+This workflow is called Snapshot for deploying a snapshot package to GitHub's packages. \
+This workflow will run all the tests, package the application, and upload to GitHub's package as a snapshot. \
+This workflow is triggered on any push to origin repository.
+
+### Release
+This workflow is called Release for deploying a release package to GitHub's packages. \
+This workflow will run the maven release plugin lifecycles and upload to GitHub's package as well as bumping version. \
+This workflow is triggered only on pushed to main branch on origin repository.
+
 ## Releases
 This project makes use of maven's release plugin to automatically tag and publish a proper package to GitHub's packages.
 
@@ -65,6 +83,20 @@ or
 mvn compile jib:dockerBuild
 ```
 This will publish a compliant docker image of the application up to dockerhub.
+
+## Future Improvements
+This application is quite minimal and can be used more as a template in building out similar systems. But nonetheless these are areas that need improvement:
+- Error handling
+- Test coverage
+- Production/development changes
+- Code coverage
+- Resource server improvements/separation
+- Container/images built into CI/CD
+- Integration tests
+  - Test Containers (DAO/Repository)
+  - WebMVC (Controllers)
+  - Full App Context (E2E flows)
+  - Etcetera
 
 ## Project Info
 Started November 27th 2023

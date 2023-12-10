@@ -13,7 +13,7 @@ public class TestJwtauthApplication {
 	@Bean
 	@ServiceConnection
 	PostgreSQLContainer<?> postgresContainer() {
-		return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
+		return new PostgreSQLContainer<>(DockerImageName.parse(" jdwillmsen/jwtauth-postgres:latest"));
 	}
 
 	public static void main(String[] args) {

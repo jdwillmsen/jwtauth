@@ -37,11 +37,13 @@ public class RolesRepositoryImpl implements RolesRepository {
     @Override
     public Optional<Role> get(Long roleId) {
         log.debug("Getting role with: roleId={}", roleId);
-        return rolesDao.get(roleId).map(roleDetails -> Role.builder()
-                .roleId(roleId)
-                .roleDetails(roleDetails)
-                .users(usersRolesDao.getUsers(roleId))
-                .build());
+        return rolesDao
+                .get(roleId)
+                .map(roleDetails -> Role.builder()
+                        .roleId(roleId)
+                        .roleDetails(roleDetails)
+                        .users(usersRolesDao.getUsers(roleId))
+                        .build());
     }
 
     @Override
